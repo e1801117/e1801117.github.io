@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./css/base.css">
+        <title>city</title>
+    </head>
+    <body>
+        <h1 id="top" class="text-center">政令指定都市</h1>
+        <div>
+            <h2>概要（説明）</h2>
+                <dl>
+                    <dt>政令指定都市とは</dt>
+                    <dd>政令指定都市は、日本の地方公共団体の一つ。法定人口が50万人以上で、なおかつ政令で指定された市のことである。
+                    略称は政令市が頻繁に使用されるが、正式略称は「指定都市」である。ただし、警察法や道路法などでは「指定市」が使用される。
+                    地方自治法において、都道府県は市町村を包括する広域の地方公共団体として、第二項の事務で広域にわたるものを処理するが、政令指定都市は一般の市町村や中核市と比べて都道府県の権限の多くを委譲される。
+                    2021年（令和3年）現在、全国に20市が存在し、日本の人口全体の約20%に及ぶ。</dd>
+                </dl>
+
+                <h2>各市の人口</h2>
+                <canvas id="lineChart"></canvas>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.js"></script>
+
+        <script src="js/test-chart.js"></script>
+    </body>
+</html>
+
+<css lang="ja">
+<body>
+    <div>
+        <ul>
+            <h2>指定都市一覧</h2>
+            <table border="1">
+                <tbody>
+                    <!-- tr:行を表すタグ -->
+                    <tr>
+                        <!-- th:タイトル等のセル -->
+                        <th></th>
+                        <th>都市名</th>
+                        <th>指定日</th>
+                        <th>人口</th>
+                        <th>面積</th>
+                        <th>人口密度</th>
+                        <th>各市サイトへのリンク</th>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <th>札幌市</th>
+                        <td>1972.4.1</td>
+                        <td>1,976,257</td>
+                        <td>1,121.26</td>
+                        <td>1,761.47</td>
+                        <td><a href="https://www.city.sapporo.jp" target="_blank">札幌市</a></td>
+                    </tr>
+                    <tr>
+                        <th>2</th>
+                        <td>仙台市</td>
+                        <td>1989.4.1</td>
+                        <td>1,097,392</td>
+                        <td>786.35</td>
+                        <td>1,395.30</td>
+                        <td><a href="https://www.city.sendai.jp" target="_blank">仙台市</a></td>
+                    </tr>
+                    <tr>
+                        <th>3</th>
+                        <td>さいたま市</td>
+                        <td>2003.4.1</td>
+                        <td>1,330,286</td>
+                        <td>217.43</td>
+                        <td>6,092.03</td>
+                        <td><a href="https://www.city.saitama.jp" target="_blank">さいたま市</a></td>
+                    </tr>
+                    <tr>
+                        <th>4</th>
+                        <td>千葉市</td>
+                        <td>1992.4.1</td>
+                        <td>977,693</td>
+                        <td>271.78</td>
+                        <td>3,588.23</td>
+                        <td><a href="https://www.city.chiba.jp" target="_blank">千葉市</a></td>
+                    </tr>
+                    <tr>
+                        <th>5</th>
+                        <td>横浜市</td>
+                        <td>,3779,391</td>
+                        <td>1956.9.1</td>
+                        <td>437.71</td>
+                        <td>8,632.01</td>
+                        <td><a href="https://www.city.yokohama.lg.jp" target="_blank">横浜市</a></td>
+                    </tr>
+                    <tr>
+                        <th>6</th>
+                        <td>川崎市</td>
+                        <td>1972.4.1</td>
+                        <td>1,541,772</td>
+                        <td>143.01</td>
+                        <td>10,762.05</td>
+                        <td><a href="https://www.city.kawasaki.jp" target="_blank">川崎市</a></td>
+                    </tr>
+                    <tr>
+                        <th>7</th>
+                        <td>相模原市</td>
+                        <td>2010.4.1</td>
+                        <td>718,219</td>
+                        <td>328.91</td>
+                        <td>2,205.17</td>
+                        <td><a href="https://www.city.sagamihara.kanagawa.jp" target="_blank">相模原市</a></td>
+                    </tr>
+                    <tr>
+                        <th>8</th>
+                        <td>新潟市</td>
+                        <td>2007.4.1</td>
+                        <td>789,715</td>
+                        <td>726.27</td>
+                        <td>1,087.36</td>
+                        <td><a href="https://www.city.niigata.lg.jp" target="_blank">新潟市</a></td>
+                    </tr>
+                    <tr>
+                        <th>9</th>
+                        <td>静岡市</td>
+                        <td>2005.4.1</td>
+                        <td>69１,810</td>
+                        <td>1,411.83</td>
+                        <td>491.39</td>
+                        <td><a href="https://www.city.shizuoka.lg.jp" target="_blank">静岡市</a></td>
+                    </tr>
+                    <tr>
+                        <th>10</th>
+                        <td>浜松市</td>
+                        <td>2007.4.1</td>
+                        <td>797,300</td>
+                        <td>1,558.06</td>
+                        <td>507.78</td>
+                        <td><a href="https://www.city.hamamatsu.shizuoka.jp" target="_blank">浜松市</a></td>
+                    </tr>
+                    <tr>
+                        <th>11</th>
+                        <td>名古屋市</td>
+                        <td>1956.9.1</td>
+                        <td>2,328,431</td>
+                        <td>326.50</td>
+                        <td>7,146.73</td>
+                        <td><a href="https://www.city.nagoya.jp" target="_blank">名古屋市</a></td>
+                    </tr>
+                    <tr>
+                        <th>12</th>
+                        <td>京都市</td>
+                        <td>1956.9.1</td>
+                        <td>1,455,377</td>
+                        <td>827.83</td>
+                        <td>1,769.55</td>
+                        <td><a href="https://www.city.kyoto.lg.jp" target="_blank">京都市</a></td>
+                    </tr>
+                    <tr>
+                        <th>13</th>
+                        <td>大阪市</td>
+                        <td>1956.9.1</td>
+                        <td>2,756,239</td>
+                        <td>225.32</td>
+                        <td>12,225.91</td>
+                        <td><a href="https://www.city.osaka.lg.jp" target="_blank">大阪市</a></td>
+                    </tr>
+                    <tr>
+                        <th>14</th>
+                        <td>堺市</td>
+                        <td>2006.4.1</td>
+                        <td>823,029</td>
+                        <td>149.83</td>
+                        <td>5,515.90</td>
+                        <td><a href="https://www.city.sakai.lg.jp" target="_blank">堺市</a></td>
+                    </tr>
+                    <tr>
+                        <th>15</th>
+                        <td>神戸市</td>
+                        <td>1956.9.1</td>
+                        <td>1,521,241</td>
+                        <td>557.02</td>
+                        <td>2,741.41</td>
+                        <td><a href="https://www.city.kobe.lg.jp" target="_blank">神戸市</a></td>
+                    </tr>
+                    <tr>
+                        <th>16</th>
+                        <td>岡山市</td>
+                        <td>2009.4.1</td>
+                        <td>7186,35</td>
+                        <td>789.95</td>
+                        <td>917.92</td>
+                        <td><a href="https://www.city.okayama.jp" target="_blank">岡山市</a></td>
+                    </tr>
+                    <tr>
+                        <th>17</th>
+                        <td>広島市</td>
+                        <td>1980.4.1</td>
+                        <td>1,195,085</td>
+                        <td>906.69</td>
+                        <td>1,324.91</td>
+                        <td><a href="https://www.city.hiroshima.lg.jp" target="_blank">広島市</a></td>
+                    </tr>
+                    <tr>
+                        <th>18</th>
+                        <td>北九州市</td>
+                        <td>1963.4.1</td>
+                        <td>961,286</td>
+                        <td>491.69</td>
+                        <td>1,911.00</td>
+                        <td><a href="https://www.city.kitakyushu.lg.jp" target="_blank">北九州市</a></td>
+                    </tr>
+                    <tr>
+                        <th>19</th>
+                        <td>福岡市</td>
+                        <td>1972.4.1</td>
+                        <td>1,619,783</td>
+                        <td>343.46</td>
+                        <td>4,697.38</td>
+                        <td><a href="https://www.city.fukuoka.lg.jp" target="_blank">福岡市</a></td>
+                    </tr>
+                    <tr>
+                        <th>20</th>
+                        <td>熊本市</td>
+                        <td>2012.4.1</td>
+                        <td>739,554</td>
+                        <td>390.32</td>
+                        <td>1,892.66</td>
+                        <td><a href="https://www.city.kumamoto.jp" target="_blank">熊本市</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </ul>
+    </div>
+</css>
